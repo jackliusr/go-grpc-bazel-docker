@@ -9,4 +9,4 @@ require (
 	google.golang.org/grpc v1.43.0
 )
 
-replace github.com/jackliusr/go-grpc-bazel-docker/echo => ../echo
+//replace github.com/jackliusr/go-grpc-bazel-docker/echo => ../echo
