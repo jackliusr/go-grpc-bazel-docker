@@ -29,7 +29,9 @@ var (
 )
 
 // server is used to implement echo.EchoServer.
-type server struct{}
+type server struct {
+	echo.UnimplementedEchoServerServer
+}
 type healthServer struct{}
 
 func (s *healthServer) Check(ctx context.Context, in *healthpb.HealthCheckRequest) (*healthpb.HealthCheckResponse, error) {
@@ -40,7 +42,9 @@ func (s *healthServer) Check(ctx context.Context, in *healthpb.HealthCheckReques
 func (s *healthServer) Watch(in *healthpb.HealthCheckRequest, srv healthpb.Health_WatchServer) error {
 	return status.Error(codes.Unimplemented, "Watch is not implemented")
 }
+func (s *server) mustEmbedUnimplementedEchoServerServer() {
 
+}
 func (s *server) SayHelloUnary(ctx context.Context, in *echo.EchoRequest) (*echo.EchoReply, error) {
 	log.Println("Got Unary Request: ")
 	uid, _ := uuid.NewUUID()
