@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package echo;
+
+option go_package = "https://github.com/jackliusr/go-grpc-bazel-docker/echo";
+
+service EchoServer {
+    rpc SayHelloUnary (EchoRequest) returns (EchoReply) {}
+    rpc SayHelloClientStream(stream EchoRequest) returns (EchoReply) {}    
+    rpc SayHelloServerStream(EchoRequest) returns (stream EchoReply) {}   
+    rpc SayHelloBiDiStream(stream EchoRequest) returns (stream EchoReply) {}
+}
+
+message EchoRequest {
+    string name = 1;
+}
+
+message EchoReply {
+    string message = 1;
+}
